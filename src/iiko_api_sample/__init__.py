@@ -1,8 +1,8 @@
 """iiko API sample package."""
 
-from .config import IikoSettings
+from .config import IikoSettings, get_client_settings, get_client_settings_many
 
-__all__ = ["IikoApiClient", "IikoSettings"]
+__all__ = ["IikoApiClient", "IikoSettings", "get_client_settings", "get_client_settings_many"]
 
 
 def __getattr__(name: str) -> object:

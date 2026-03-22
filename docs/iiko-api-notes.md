@@ -2,9 +2,11 @@
 
 ## Cloud API basics
 
-- Base URL in current project: `https://api-ry.iiko.services/api/1`
+- Official documentation entrypoint: `https://api-ru.iiko.services/docs`
+- Base URL for API requests: `https://api-ru.iiko.services`
 - Authentication starts by requesting an access token
-- The token request uses the `apiLogin` field
+- The `/api/1/access_token` request uses the `apiLogin` field
+- The access token response includes `correlationId` and `token`
 
 ## What `apiLogin` is
 
@@ -55,15 +57,40 @@ This lets future commands target:
 - one client: `--client client_one`
 - multiple clients: `--clients client_one,client_two`
 
-## Open questions
+## Official customer API notes
 
-- confirm the exact token endpoint request body against live docs before implementing auth code
+- `Create or update customer` is officially documented as working by `id`, `phone`, or `card track`
+- `Get customer info` officially supports lookup type values: `phone`, `cardTrack`, `cardNumber`, `email`, and `id`
+- The official customer create/update schema includes fields such as:
+  - `id`
+  - `phone`
+  - `cardTrack`
+  - `cardNumber`
+  - `name`
+  - `middleName`
+  - `surName`
+  - `birthday`
+  - `email`
+  - `sex`
+  - `consentStatus`
+  - `shouldReceiveLoyaltyInfo`
+  - `shouldReceivePromoActionsInfo`
+  - `referrerId`
+  - `userData`
+  - `isDeleted`
+  - `organizationId`
+
+## Refined open questions
+
 - confirm whether any clients require region-specific base URLs
 - confirm who on the customer side has permission to view or generate the API login
+- choose the first guest uniqueness rule for our create-guest tool: `phone` is the simplest first candidate, but the API also supports `id` and `cardTrack`
+- confirm the exact balance-by-track-number path from the official docs before starting the balance tool
 
 ## Reference links
 
-- `https://api-ry.iiko.services`
+- `https://api-ru.iiko.services`
+- `https://api-ru.iiko.services/docs`
 - `https://ru.iiko.help/smart/project-iikoweb/iikocloudapi`
 - `https://ru.iiko.help/articles/api-documentations/kak-podklyuchit-vneshniy-api`
 - `https://api.iiko.ru/`
